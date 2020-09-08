@@ -1,0 +1,306 @@
+<div>
+  <app-header></app-header>
+  <section class="content">
+    <div class="container-fluid">
+      <div class="block-header">
+        <h2>Manage Users</h2>
+        <span *ngIf="error !== ''" style="color: red;">{{ error }}</span>
+      </div>
+    </div>
+    <div class="row-clearfix">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <mat-form-field>
+          <mat-label>Filter</mat-label>
+          <input
+            matInput
+            (keyup)="applyFilter($event)"
+            placeholder="Search...."
+            #input
+          />
+        </mat-form-field>
+
+        <div class="mat-elevation-z8" style="background-color: white;">
+          <table mat-table [dataSource]="dataSource" matSort>
+            <!-- ID Column -->
+            <ng-container matColumnDef="p_name">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                UserName
+              </th>
+              <td mat-cell *matCellDef="let row">{{ row.p_name }}</td>
+            </ng-container>
+
+            <!-- Progress Column -->
+            <ng-container matColumnDef="p_mobile">
+              <th mat-header-cell *matHeaderCellDef>
+                Contact No.
+              </th>
+              <td mat-cell *matCellDef="let row">{{ row.p_mobile }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="action">
+              <th mat-header-cell *matHeaderCellDef>Action</th>
+              <td mat-cell *matCellDef="let row" [style.color]="row.color">
+                <div>
+                  <button
+                    type="button"
+                    class="btn btn-info waves-effect"
+                    (click)="getDetails(row.p_mobile)"
+                    data-toggle="modal"
+                    data-target="#viewDetailsModal"
+                  >
+                    View Details
+                  </button>
+                  &nbsp;&nbsp;
+                  <button
+                    type="button"
+                    class="btn btn-danger waves-effect"
+                    (click)="getDetailsForDeletion(row.p_mobile)"
+                    data-toggle="modal"
+                    data-target="#removeModal"
+                  >
+                    Remove
+                  </button>
+                </div>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+            <!-- Row shown when there is no matching data. -->
+            <tr class="mat-row" *matNoDataRow>
+              <td class="mat-cell" colspan="4">
+                No data matching the filter "{{ input.value }}"
+              </td>
+            </tr>
+          </table>
+          <br>        
+          <h1><p style="color : red; text-align: center; font-size:30px; background-color: white;">{{ err }}</p></h1>
+          <br>
+          <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- remove Modal -->
+  <div class="modal fade" id="removeModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="defaultModalLabel">
+            Confirmation Message
+          </h4>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to remove this user from system ? If yes then
+          he/she can not get access to his/her account.
+        </div>
+        <div class="modal-footer">
+          <button
+            type="submit"
+            class="btn btn-success waves-effect"
+            (click)="removeUser()"
+          >
+            Yes
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger waves-effect"
+            data-dismiss="modal"
+          >
+            No
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- View Details Modal -->
+  <div class="modal fade" id="viewDetailsModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="defaultModalLabel">
+            Details of {{ p_name }}
+          </h4>
+        </div>
+        <div class="modal-body">
+          <div class="row clearfix">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <div class="form-line">
+                  Contact No. :
+                  <input
+                    type="text"
+                    class="form-control"
+                    [value]="p_mobile"
+                    disabled
+                  />
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="form-line">
+                  Address. :
+                  <textarea rows="3" class="form-control no-resize" disabled>{{
+                    p_address
+                  }}</textarea>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="form-line">
+                  Pincode. :
+                  <input
+                    type="text"
+                    class="form-control"
+                    [value]="p_pincode"
+                    disabled
+                  />
+                </div>
+              </div>
+
+              <div
+                class="alert alert-danger"
+                *ngIf="pkgError != ''; else elseblock"
+              >
+                {{ pkgError }}
+              </div>
+              <ng-template #elseblock>
+                <div class="row clearfix">
+                  <div class="col-xs-12 ol-sm-12 col-md-12 col-lg-12">
+                    <div
+                      class="panel-group"
+                      id="accordion_1"
+                      role="tablist"
+                      aria-multiselectable="true"
+                    >
+                      <div class="panel panel-success">
+                        <div class="panel-heading" role="tab" id="headingTwo_1">
+                          <h4 class="panel-title">
+                            <a
+                              class="collapsed"
+                              role="button"
+                              data-toggle="collapse"
+                              data-parent="#accordion_1"
+                              href="#panelOne"
+                              aria-expanded="false"
+                              aria-controls="collapseTwo_1"
+                            >
+                              {{ pkgSuccess }}
+                            </a>
+                          </h4>
+                        </div>
+                        <div
+                          id="panelOne"
+                          class="panel-collapse collapse"
+                          role="tabpanel"
+                          aria-labelledby="headingTwo_1"
+                        >
+                          <div class="panel-body">
+                            <div class="body">
+                              <span *ngFor="let item of serviceCatList">
+                                <button
+                                  type="button"
+                                  class="btn btn-primary waves-effect"
+                                  (click)="
+                                    viewServices(item.sc_id, item.sc_name,pkgID)
+                                  "
+                                >
+                                  {{ item.sc_name }}</button
+                                >&nbsp;&nbsp;</span
+                              >
+                              <div *ngIf="servicesList != ''">
+                                <br />
+                                <span>Select Service :</span>
+                                <select
+                                  [(ngModel)]="serviceID"
+                                  class="form-control show-tick"
+                                  tabindex="-98"
+                                  (change)="serviceNameSelected()"
+                                >
+                                  <option value="" selected
+                                    >-- Please select --</option
+                                  >
+                                  <option
+                                    *ngFor="let item of servicesList"
+                                    [value]="item.s_id"
+                                    >{{ item.s_name }}</option
+                                  >
+                                </select>
+                              </div>
+                              <span *ngIf="finalError != ''" style="color: red;"
+                                ><br />{{ finalError }}</span
+                              >
+
+                              <div *ngIf="empFlag === 1">
+                                <div *ngIf="employeeList == ''; else elseblock">
+                                  <br /><span style="color: red;">{{
+                                    "No Employee is Available for this Service"
+                                  }}</span>
+                                </div>
+
+                                <ng-template #elseblock>
+                                  <br />
+                                  <span>Select Available Employee :</span>
+                                  <select
+                                    [(ngModel)]="empMobile"
+                                    class="form-control show-tick"
+                                    tabindex="-98"
+                                  >
+                                    <option value="" selected
+                                      >-- Please select --</option
+                                    >
+                                    <option
+                                      *ngFor="let item of employeeList"
+                                      [value]="item.e_mobile"
+                                      >{{
+                                        "Name : " +
+                                          item.e_name +
+                                          " " +
+                                          " Contact No. : " +
+                                          item.e_mobile
+                                      }}</option
+                                    >
+                                  </select>
+                                </ng-template>
+                                <div *ngIf="empMobile !== ''">
+                                  <br />
+                                  <button
+                                    type="button"
+                                    class="btn btn-success waves-effect"
+                                    (click)="provideService()"
+                                  >
+                                    Provide Service
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <a
+            [href]="'/dashboard/manageUsers/viewPkgHistory?m_o_b=' + p_mobile"
+            class="btn btn-info waves-effect"
+          >
+            View Package History
+          </a>
+          <button
+            type="button"
+            class="btn btn-success waves-effect"
+            data-dismiss="modal"
+          >
+            OK
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

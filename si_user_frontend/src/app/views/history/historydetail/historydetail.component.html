@@ -1,0 +1,69 @@
+<app-header></app-header>
+<div class="banner-area banner-bg-1">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="banner">
+          <h2>Detail</h2>
+          <ul class="page-title-link">
+            <!-- <li><a href="#">Home</a></li>
+                        <li><a href="#">Pricing</a></li> -->
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="contact" class="section wb">
+  <div class="container">
+    <div class="section-title text-center">
+      <h3>History Detail</h3>
+    </div>
+    <!-- end title -->
+
+    <table class="responsive-table">
+      <thead>
+        <tr>
+          <th scope="col">Category Name</th>
+          <th scope="col">Service Name</th>
+          <th scope="col">Status</th>
+        </tr>
+      </thead>
+      <tfoot>
+        <tr>
+          <td colspan="2"></td>
+        </tr>
+      </tfoot>
+      <tbody>
+        <tr *ngFor="let item of arr">
+          <td>{{ item.sc_name }}</td>
+          <td>{{ item.s_name }}</td>
+
+          <td>
+            <div *ngFor="let pitem of parr">
+              <div *ngIf="item.s_name == pitem.s_name">
+                <div *ngIf="pitem.om_status == 0">
+                  <label style="color: green;">Completed</label>
+                </div>
+
+                <div *ngIf="pitem.om_status == 2">
+                  <label style="color: red;">Failed</label>
+                </div>
+                <div *ngIf="pitem.om_status == 1">
+                  <label>__</label>
+                </div>
+              </div>
+            </div>
+            <div *ngFor="let sitem of sarr">
+              <div *ngIf="item.s_name == sitem.s_name">
+                <label>__</label>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<app-footer></app-footer>

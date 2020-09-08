@@ -1,0 +1,44 @@
+<app-header></app-header>
+<div id="about" class="section wb">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="message-box">
+          <h4>About Service</h4>
+          <h2>{{ s_name }}</h2>
+          <p class="lead">
+            {{ s_description }}
+          </p>
+
+          <!-- <p> Integer rutrum ligula eu dignissim laoreet. Pellentesque venenatis nibh sed tellus faucibus bibendum. Sed fermentum est vitae rhoncus molestie. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed vitae rutrum neque. Ut id erat sit amet libero bibendum aliquam. Donec ac egestas libero, eu bibendum risus. Phasellus et congue justo. </p> -->
+
+          <a
+            [href]="'/services/servicedetail/serviceportfolio/' + s_id"
+            class="btn btn-light btn-radius btn-brd grd1"
+            >View More Images</a
+          >
+        </div>
+        <!-- end messagebox -->
+      </div>
+      <!-- end col -->
+
+      <div class="col-md-6">
+        <div class="post-media wow fadeIn">
+          <img
+            height="350px"
+            width="100px"
+            src="http://localhost:3000/images/{{ s_img }}"
+            alt="image loading..."
+          />
+        </div>
+        <!-- end media -->
+      </div>
+      <!-- end col -->
+    </div>
+    <!-- end row -->
+    <!-- end row -->
+  </div>
+  <!-- end container -->
+</div>
+<!-- end section -->
+<app-footer></app-footer>

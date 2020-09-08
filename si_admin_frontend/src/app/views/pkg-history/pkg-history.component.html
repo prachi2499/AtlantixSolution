@@ -1,0 +1,103 @@
+<app-header></app-header>
+<section class="content">
+  <div class="container-fluid">
+    <div class="block-header">
+      <h3> HISTORY</h3>
+    </div>
+    <!-- Basic Table -->
+    <div class="row-clearfix">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <mat-form-field>
+          <mat-label>Filter</mat-label>
+          <input
+            matInput
+            (keyup)="applyFilter($event)"
+            placeholder="Search...."
+            #input
+          />
+        </mat-form-field>
+
+        <div class="mat-elevation-z8" style="background-color: white;">
+          <table mat-table [dataSource]="dataSource" matSort>
+            <!-- ID Column -->
+            <ng-container matColumnDef="pk_name">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>NAME</th>
+              <td mat-cell *matCellDef="let row">{{ row.pk_name }}</td>
+            </ng-container>
+
+            <!-- Progress Column -->
+            <ng-container matColumnDef="pp_date">
+              <th mat-header-cell *matHeaderCellDef>START DATE</th>
+              <td mat-cell *matCellDef="let row">{{ row.pp_date }}</td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="pp_endDate">
+              <th mat-header-cell *matHeaderCellDef>END DATE</th>
+              <td mat-cell *matCellDef="let row">
+                {{ row.pp_endDate }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef>STATUS</th>
+                <td mat-cell *matCellDef="let row">
+                    <span
+                  class="label label-success"
+                  *ngIf="row.status == 'Ongoing'"
+                  >{{ row.status }}</span>
+                  <span
+                  class="label label-warning"
+                  *ngIf="row.status == 'Expired'"
+                  >{{ row.status }}</span>
+                </td>
+              </ng-container>
+             <ng-container matColumnDef="action">
+              <th mat-header-cell *matHeaderCellDef style="text-align: center;">
+                ACTION
+              </th>
+              <td mat-cell *matCellDef="let row">
+                <div>
+                  <button disabled 
+                  *ngIf = "row.status == 'Expired'"
+                    type="button"
+                    class="btn bg-cyan waves-effect"
+                    (click)="goTo(row)"
+                  >
+                    View Details</button
+                  >
+                  
+                  <button
+                  *ngIf = "row.status == 'Ongoing'"
+                    type="button"
+                    class="btn bg-cyan waves-effect"
+                    (click)="goTo(row)"
+                  >
+                    View Details</button
+                  >
+                </div>
+              </td>
+            </ng-container>
+            <!-- Color Column -->
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+            <!-- Row shown when there is no matching data. -->
+            <tr class="mat-row" *matNoDataRow>
+              <td class="mat-cell" colspan="4">
+                No data matching the filter "{{ input.value }}"
+              </td>
+            </tr>
+          </table>
+          <br>        
+          <h1><p style="color : red; text-align: center; font-size:30px; background-color: white;">{{ err }}</p></h1>
+          <br>
+          <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+        </div>
+      </div>
+    </div>
+
+    <!-- #END# Basic Table -->
+  </div>
+</section>

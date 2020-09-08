@@ -1,0 +1,91 @@
+<div>
+  <div class="top-bar">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6 col-sm-6">
+          <div class="left-top">
+            <div class="email-box">
+              <a href="mailto:solutions.atlantix@gmail.com" target="_blank"
+                ><i class="fa fa-envelope-o" aria-hidden="true"></i>
+                solutions.atlantix@gmail.com</a
+              >
+            </div>
+            <div class="phone-box" *ngIf="flag == true">
+              <a href="tel:1234567890"
+                ><i class="fa fa-phone" aria-hidden="true"></i> +91
+                9429042300</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <header class="header header_style_01">
+    <nav class="megamenu navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button
+            type="button"
+            class="navbar-toggle collapsed"
+            data-toggle="collapse"
+            data-target="#navbar"
+            aria-expanded="false"
+            aria-controls="navbar"
+          >
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div class="navbar-brand">
+            <h1 style="color: #f4770d; font-family: serif;">
+              <b>ATLANTIX SOLUTIONS</b>
+            </h1>
+          </div>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li routerLinkActive="active"><a routerLink="">Home</a></li>
+            <!-- <li routerLinkActive="active"><a routerLink="">About Us</a></li> -->
+            <li routerLinkActive="active">
+              <a routerLink="/services">Our Services</a>
+            </li>
+            <li routerLinkActive="active">
+              <a routerLink="/package">Our Packages</a>
+            </li>
+            <!-- <li routerLinkActive="active"><a routerLink="">Portfolio</a></li> -->
+            <li *ngIf="flag == false" routerLinkActive="active">
+              <a routerLink="/login">Login</a>
+            </li>
+            <li *ngIf="flag == true"><a><i>Welcome {{user}}!!</i></a>
+            </li>
+
+            <li>
+              <div *ngIf="flag" style="margin-top: -10px;" class="dropdown">
+                <button
+                  id="dropdownMenu1"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="true"
+                  mat-icon-button
+                  style="color: black;"
+                >
+                  <mat-icon>menu</mat-icon>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                  <li><a routerLink="/profile">My Profile</a></li>
+                  <li><a routerLink="/changePassword">Change Password</a></li>
+                  <li><a routerLink="/history">View History</a></li>
+                  <li><a routerLink="/feedback">Feedback</a></li>
+                  <li><a routerLink="/contact">Contact Us</a></li>
+                  <li (click)="onlogout()" routerLinkActive="active" *ngIf="flag == true"><a href="/">Logout</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+</div>

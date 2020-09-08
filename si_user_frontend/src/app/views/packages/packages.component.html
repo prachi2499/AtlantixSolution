@@ -1,0 +1,115 @@
+<app-header></app-header>
+<div class="banner-area banner-bg-1">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="banner">
+          <h2>Packages</h2>
+          <ul class="page-title-link">
+            <!-- <li><a href="#">Home</a></li>
+							<li><a href="#">Our Packages</a></li> -->
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="about" class="section wb">
+  <div class="container">
+    <div class="section-title text-center">
+      <h3 style="font-family: serif;">Our Packages</h3>
+      <p class="lead">
+        Enjoy special discount on various curated packages with different
+        services.
+      </p>
+    </div>
+    <!-- end title -->
+
+    <div class="row">
+      <div *ngFor="let item of package_arr" class="col-md-4 col-sm-6">
+        <div class="pricingTable">
+          <div class="pricingTable-header">
+            <p class="title" style="font-size: 17px;">{{ item.pk_name }}</p>
+
+            <span class="year">{{ item.pk_discount }}%<br />Discount</span>
+          </div>
+          <div class="price-value">
+            <div class="value">
+              <span class="currency" style="margin-top: -10px;">Rs.</span><br />
+              <span
+                class="amount"
+                style="margin-top: -10px; font-size: 30px;"
+                >{{ item.pk_price }}</span
+              >
+            </div>
+          </div>
+          <br /><br /><br />
+          <ul class="pricing-content">
+            {{
+              item.pk_description
+            }}
+          </ul>
+          <a
+            [href]="'/package/moredetail/' + item.pk_id"
+            class="pricingTable-signup"
+            >More Details
+          </a>
+          <button
+            data-toggle="modal"
+            data-target="#myModal"
+            *ngIf="flag"
+            class="pricingTable-signup"
+          >
+            Select the Package
+          </button>
+          <a [href]="'/package/billing/' + item.pk_id"
+            ><button
+              *ngIf="!flag && isLoggedIn == 'true'"
+              class="pricingTable-signup"
+            >
+              Select the Package
+            </button></a
+          >
+          <a [href]="'/login'"
+            ><button
+              *ngIf="!flag && isLoggedIn == 'false'"
+              class="pricingTable-signup"
+            >
+              Select the Package
+            </button></a
+          >
+        </div>
+      </div>
+
+    </div>
+
+    <!-- end row -->
+  </div>
+
+  <!-- end container -->
+</div>
+<!-- end section -->
+
+<app-footer></app-footer>
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+          &times;
+        </button>
+        <h4 class="modal-title">Package purchase</h4>
+      </div>
+      <div class="modal-body">
+        <p>Your current package is not expired yet...</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

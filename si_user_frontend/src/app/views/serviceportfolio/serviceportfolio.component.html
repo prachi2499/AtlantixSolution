@@ -1,0 +1,41 @@
+<app-header></app-header>
+<div class="banner-area banner-bg-1">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="banner">
+          <h2>Our Portfolio</h2>
+          <ul class="page-title-link">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Our Portfolio</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="portfolio" class="section wb">
+  <div class="container">
+    <div class="section-title text-center">
+      <h3>Our Portfolio</h3>
+    </div>
+    <!-- end title -->
+  </div>
+  <!-- end container -->
+
+  <div class="container">
+    <div class="gallery">
+      <div class="gallery-item" *ngFor="let item of arrimage">
+        <img
+          height="200px"
+          width="200px"
+          class="gallery-image"
+          src="http://localhost:3000/images/{{ item.i_name }}"
+        />
+      </div>
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+</div>

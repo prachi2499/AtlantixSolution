@@ -1,0 +1,315 @@
+<div>
+  <app-header></app-header>
+
+  <section class="content">
+    <div class="container-fluid">
+      <div class="block-header">
+        <h3>Update Package</h3>
+      </div>
+      <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div class="card">
+            <div class="header">
+              <h2>
+                Update Package Details
+              </h2>
+            </div>
+            <div class="body">
+              <form #updatePkgForm="ngForm" (ngSubmit)="updatePkg()">
+                <h2 class="card-inside-title">Basic Details</h2>
+                <div class="row clearfix">
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                      <div class="form-line">
+                        <span><b>Package Name :</b></span>
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Package Name"
+                          required
+                          pattern="[a-zA-Z0-9., ]*"
+                          maxlength="50"
+                          title="Only characters and digits are allowed"
+                          [(ngModel)]="pkgName"
+                          #pkgName1="ngModel"
+                          name="name"
+                        />
+                        <span
+                          *ngIf="
+                            pkgName1.hasError('required') && pkgName1.touched
+                          "
+                          style="color: red;"
+                          >Package Name is required</span
+                        >
+                        <span
+                          *ngIf="
+                            pkgName1.hasError('pattern') && pkgName1.touched
+                          "
+                          style="color: red;"
+                          >Only characters and digits are allowed</span
+                        >
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="form-line">
+                        <span><b>Description :</b></span>
+                        <textarea
+                          class="form-control"
+                          placeholder="Description"
+                          required
+                          pattern="[a-zA-Z0-9., ]*"
+                          maxlength="400"
+                          title="Only characters,digits,comma and fullstop are allowed"
+                          rows="5"
+                          [(ngModel)]="pkgDescription"
+                          #pkgDescription1="ngModel"
+                          name="Description"
+                        ></textarea>
+                        <span
+                          *ngIf="
+                            pkgDescription1.hasError('required') &&
+                            pkgDescription1.touched
+                          "
+                          style="color: red;"
+                          >Package Description is required</span
+                        >
+                        <span
+                          *ngIf="
+                            pkgDescription1.hasError('pattern') &&
+                            pkgDescription1.touched
+                          "
+                          style="color: red;"
+                          >Only characters and digits are allowed</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <h2 class="card-inside-title">Amount Details</h2>
+                <div class="row clearfix">
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <div class="form-line">
+                        <span><b>Amount :</b></span>
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Amount"
+                          title="Only digits are allowed"
+                          [(ngModel)]="pkgAmount"
+                          #pkgAmount1="ngModel"
+                          required
+                          pattern="[0-9]*"
+                          maxlength="10"
+                          name="Amount"
+                        />
+                        <span
+                          *ngIf="
+                            pkgAmount1.hasError('required') &&
+                            pkgAmount1.touched
+                          "
+                          style="color: red;"
+                          >Package Amount is required</span
+                        >
+
+                        <span
+                          *ngIf="
+                            pkgAmount1.hasError('pattern') && pkgAmount1.touched
+                          "
+                          style="color: red;"
+                          >Only Digits are allowed</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <div class="form-line">
+                        <span><b>Discount :</b></span>
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Discount"
+                          title="Only digits are allowed"
+                          [(ngModel)]="pkgDiscount"
+                          #pkgDiscount1="ngModel"
+                          required
+                          pattern="[0-9]*"
+                          maxlength="10"
+                          name="Discount"
+                        />
+                        <span
+                          *ngIf="
+                            pkgDiscount1.hasError('required') &&
+                            pkgDiscount1.touched
+                          "
+                          style="color: red;"
+                          >Package Discount is required</span
+                        >
+                        <span
+                          *ngIf="
+                            pkgDiscount1.hasError('pattern') &&
+                            pkgDiscount1.touched
+                          "
+                          style="color: red;"
+                          >Only Digits are allowed</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <div class="form-line">
+                        <span><b>Duration :</b></span>
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Duration"
+                          title="Only digits are allowed"
+                          [(ngModel)]="pkgDuration"
+                          #pkgDuration1="ngModel"
+                          required
+                          pattern="[0-9]*"
+                          maxlength="10"
+                          name="Duration"
+                        />
+                        <span
+                          *ngIf="
+                            pkgDuration1.hasError('required') &&
+                            pkgDuration1.touched
+                          "
+                          style="color: red;"
+                          >Package Duration is required</span
+                        >
+                        <span
+                          *ngIf="
+                            pkgDuration1.hasError('pattern') &&
+                            pkgDuration1.touched
+                          "
+                          style="color: red;"
+                          >Only Digits are allowed</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <div class="form-line">
+                        <span><b> Essential Service Support :</b></span>
+                        <input
+                          type="text"
+                          class="form-control"
+                          title="Only digits are allowed"
+                          [(ngModel)]="essentialServices"
+                          #essentialServices1="ngModel"
+                          pattern="[0-9]*"
+                          maxlength="10"
+                          name="essentialServices"
+                          required
+                        />
+                        <span
+                          *ngIf="
+                            essentialServices1.hasError('pattern') &&
+                            essentialServices1.touched
+                          "
+                          style="color: red;"
+                          >Only Digits are allowed</span
+                        >
+
+                        <span
+                          *ngIf="
+                            essentialServices1.hasError('required') &&
+                            essentialServices1.touched
+                          "
+                          style="color: red;"
+                          >Required</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="form-line">
+                    <mat-form-field appearance="fill">
+                      <mat-label>Services Assigned</mat-label>
+                      <mat-select
+                        disableRipple
+                        [(ngModel)]="assignedService"
+                        name="assignedserv"
+                      >
+                        <mat-option
+                          *ngFor="let row of selectedServices"
+                          [value]="row.s_name"
+                          style="color: black;"
+                          >{{ row.s_name }}</mat-option
+                        >
+                      </mat-select> </mat-form-field
+                    >&nbsp;&nbsp;
+
+                    <button
+                      mat-raised-button
+                      type="button"
+                      class="btn bg-orange btn-circle waves-effect waves-circle waves-float"
+                      matTooltip="Choose any one service from list of services assigned then click to remove service"
+                      (click)="removeService(assignedService)"
+                      aria-label="Button that displays a tooltip in various positions"
+                    >
+                      <i class="material-icons">content_cut</i></button
+                    >&nbsp;&nbsp;
+
+                    <mat-form-field
+                      class="example-user-input"
+                      appearance="fill"
+                    >
+                      <mat-label>List of Services</mat-label>
+                      <mat-select [(ngModel)]="service" name="serv">
+                        <mat-option
+                          *ngFor="let row of remainingServices"
+                          [value]="row.s_name"
+                        >
+                          {{ row.s_name }}
+                        </mat-option>
+                      </mat-select> </mat-form-field
+                    >&nbsp;&nbsp;
+
+                    <!-- <button type="button" class="btn btn-default btn-circle-lg waves-effect waves-circle waves-float">
+                  <i class="material-icons">call_missed_outgoing</i>
+              </button> -->
+                    <button
+                      mat-raised-button
+                      type="button"
+                      class="btn bg-cyan btn-circle waves-effect waves-circle waves-float"
+                      matTooltip="Choose any one service from list of services then click to add service"
+                      (click)="addService(service)"
+                      aria-label="Button that displays a tooltip in various positions"
+                    >
+                      <i class="material-icons">add</i>
+                    </button>
+                  </div>
+                </div>
+                <p style="color: red; text-align: center; font-size: medium;">
+                  {{ err }}
+                </p>
+                <button
+                  type="submit"
+                  class="btn btn-success btn-lg waves-effect"
+                >
+                  Edit</button
+                >&nbsp;&nbsp;
+                <button
+                  (click)="goBack()"
+                  type="submit"
+                  class="btn btn-danger btn-lg waves-effect"
+                >
+                  Cancel
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

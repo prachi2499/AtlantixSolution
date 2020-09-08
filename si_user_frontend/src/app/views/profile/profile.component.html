@@ -1,0 +1,175 @@
+<app-header></app-header>
+<div class="banner-area banner-bg-1">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="banner">
+          <h2>Profile</h2>
+          <ul class="page-title-link">
+            <!-- <li><a href="#">Home</a></li>
+                        <li><a href="#">Pricing</a></li> -->
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="contact" class="section wb">
+  <div class="container">
+    <div class="section-title text-center">
+      <h3>Your Details</h3>
+    </div>
+    <!-- end title -->
+
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <div class="contact_form">
+          <div id="message"></div>
+          <form #f="ngForm" class="row" method="post">
+            <fieldset class="row-fluid">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <input
+                  readonly
+                  [(ngModel)]="p_mobile"
+                  type="text"
+                  name="p_mobile"
+                  id="p_mobile"
+                  class="form-control"
+                  placeholder="Mobile Number"
+                />
+              </div>
+
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <input
+                  pattern="^[A-Za-z -]+$"
+                  required
+                  #name="ngModel"
+                  [(ngModel)]="p_name"
+                  type="text"
+                  name="p_name"
+                  id="p_name"
+                  class="form-control"
+                  placeholder="Name"
+                />
+                <div *ngIf="name.invalid || name.touched">
+                  <div *ngIf="name.errors?.pattern" class="text-danger">
+                    <font size="2">*Name must contain alphabets only</font>
+                  </div>
+                </div>
+                <div [hidden]="name.valid || name.untouched">
+                  <div [hidden]="!name.errors?.required" class="text-danger">
+                    <font size="2">*Name is must</font>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <input
+                  minlength="8"
+                  required
+                  #pwd="ngModel"
+                  [(ngModel)]="p_password"
+                  type="password"
+                  name="p_password"
+                  id="p_password"
+                  class="form-control"
+                  placeholder="****************"
+                />
+                <div *ngIf="pwd.invalid || pwd.touched">
+                  <div *ngIf="pwd.errors?.minlength" class="text-danger">
+                    <font size="2"
+                      >*Password must be of atleast 8 characters long</font
+                    >
+                  </div>
+                </div>
+                <div [hidden]="pwd.valid || pwd.untouched">
+                  <div [hidden]="!pwd.errors?.required" class="text-danger">
+                    <font size="2">*Password is must</font>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <input
+                  required
+                  #add="ngModel"
+                  [(ngModel)]="p_address"
+                  type="text"
+                  name="p_address"
+                  id="p_address"
+                  class="form-control"
+                  placeholder="address"
+                />
+                <div [hidden]="add.valid || add.untouched">
+                  <div [hidden]="!add.errors?.required" class="text-danger">
+                    <font size="2">*Address is must</font>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <input
+                  pattern="^[0-9]*$"
+                  minlength="6"
+                  maxlength="6"
+                  required
+                  #pin="ngModel"
+                  [(ngModel)]="p_pincode"
+                  type="text"
+                  name="p_pincode"
+                  id="p_pincode"
+                  class="form-control"
+                  placeholder="pincode"
+                />
+                <div *ngIf="pin.invalid || pin.touched">
+                  <div *ngIf="pin.errors?.pattern" class="text-danger">
+                    <font size="2">*pincode should be numbers only</font>
+                  </div>
+                  <div *ngIf="pin.errors?.minlength" class="text-danger">
+                    <font size="2">*pincode should be of 6 digits</font>
+                  </div>
+                </div>
+                <div [hidden]="pin.valid || pin.untouched">
+                  <div [hidden]="!pin.errors?.required" class="text-danger">
+                    <font size="2">*pincode is must</font>
+                  </div>
+                </div>
+
+                <span
+                  style="color: red; text-align: center; font-size: medium;"
+                  >{{ err }}</span
+                >
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 text-center">
+                <button
+                  [disabled]="!f.valid"
+                  (click)="onupdate()"
+                  type="submit"
+                  value="UPDATE"
+                  id="submit"
+                  class="btn btn-light btn-radius btn-brd grd1 btn-block"
+                >
+                  Update
+                </button>
+              </div>
+              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 text-center">
+                <a
+                  [href]="'/'"
+                  class="btn btn-light btn-radius btn-brd grd1 btn-block"
+                  >Cancel</a
+                >
+              </div>
+            </fieldset>
+            <!-- <p style="color : red; text-align: center; font-size:medium">{{ err }}</p>   -->
+          </form>
+        </div>
+      </div>
+      <!-- end col -->
+    </div>
+    <!-- end row -->
+  </div>
+  <!-- end container -->
+</div>
+<!-- end section -->
+<app-footer></app-footer>

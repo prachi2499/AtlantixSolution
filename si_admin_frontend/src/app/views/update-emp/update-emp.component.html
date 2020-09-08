@@ -1,0 +1,167 @@
+<app-header></app-header>
+<section class="content">
+    <div class="container-fluid">
+      <div class="card">
+        <div class="header">
+          <h3>Update Employee Details</h3>
+        </div>
+        <div class="body">
+          <form #updateEmpForm="ngForm" (ngSubmit)="editDetails(updateEmpForm.value)">
+            <div class="row clearfix">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <div class="form-line">
+                    <div id="aniimated-thumbnials" class="list-unstyled row clearfix">
+                      <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                              <img class="img-responsive thumbnail" src="http://localhost:3000/images/{{img}}">
+                      </div>
+                  </div>
+                </div>
+                </div>
+                <div class="form-group">
+                  <div class="form-line">
+                    Name :
+                    <input
+                      pattern="[a-zA-Z ]*"
+                      title="Only Characters are allowed"
+                      required
+                      type="text"
+                      class="form-control"
+                      placeholder="Name"
+                      [(ngModel)] = "empName"
+                      name="empname"
+                      ngmodel
+                      #empname="ngModel"
+                    />
+                  </div>
+                                <span *ngIf="empname.invalid && empname.touched && empname.value" style="color:red; font-size:2; text-align:center;"> Entered Name Is Invalid</span>
+                                <span *ngIf="!empname.value && empname.touched" style="color:red; font-size:2; text-align:center;">Name Field Must be Filled</span>
+                </div>
+                <div class="form-group">
+                    <div class="form-line">
+                      ContactNo :
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Contact No."
+                        maxlength="10"
+                        minlength="10"
+                        pattern="[0-9]*"
+                        title="Only Numbers are allowed"
+                        required
+                        [(ngModel)] = "empContactNo"
+                        name="empcontactno"
+                      ngmodel
+                      #empcontactno="ngModel"
+                      disabled
+                      />
+                    </div>
+                  </div>
+                  <span *ngIf="empcontactno.invalid && empcontactno.touched && empcontactno.value" style="color:red; font-size:2; text-align:center;"> Entered Mobile Number Is Invalid</span>
+                  <span *ngIf="!empcontactno.value && empcontactno.touched" style="color:red; font-size:2; text-align:center;">Mobile Number Field Must be Filled</span>
+                  <div class="form-group">
+                    <div class="form-line">
+                      Aadhaar-Card No. :
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Aadhaar-Card No."
+                        pattern="[0-9]*"
+                        title="Only Numbers are allowed"
+                        required
+                        [(ngModel)] = "empAadhaarNo"
+                        name="empaadhaarno"
+                      ngmodel
+                      #aadhaarno="ngModel"
+                      />
+                    </div>
+                  </div>
+
+                  
+                <div class="form-group">
+                  <div class="form-line">
+                    Address :
+                    <input
+                      type="text"
+                      title="Only Characters are allowed"
+                      required
+                      class="form-control"
+                      placeholder="Address"
+                      [(ngModel)] = "empAddress"
+                      name="empaddress"
+                      ngModel
+                      #empaddress="ngModel"
+                    />
+                  </div>
+                                <span *ngIf="!empaddress.value && empaddress.touched" style="color:red; font-size:2; text-align:center;">Address Field Must be Filled</span>
+                </div>
+
+                <div class="form-group">
+                    <div class="form-line">
+                      Pincode :
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Pincode"
+                        pattern="[0-9]*"
+                        maxlength="6"
+                        title="Only Numbers are allowed"
+                        required
+                        [(ngModel)] = "empPincode"
+                        name="emppincode"
+                      ngmodel
+                      #emppincode="ngModel"
+                      />
+                    </div>
+                                <span *ngIf="emppincode.invalid && emppincode.touched && emppincode.value" style="color:red; font-size:2; text-align:center;"> Entered Pincode Is Invalid</span>
+                                <span *ngIf="!emppincode.value && emppincode.touched" style="color:red; font-size:2; text-align:center;">Pincode Field Must be Filled</span>
+                  </div>
+                  <div class="form-group">
+                    <div class="form-line">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Services Assigned</mat-label>
+                    <mat-select disableRipple [(ngModel)] = "assignedService" name="assignedserv">
+                      <mat-option  *ngFor= "let row of services" [value]="row"  style="color:black;">{{ row }}</mat-option>
+                    </mat-select>
+                  </mat-form-field>&nbsp;&nbsp;
+                  
+                  <button mat-raised-button type="button" class="btn bg-orange btn-circle waves-effect waves-circle waves-float"
+        matTooltip="Choose any one service from list of services assigned then click to remove service"
+        (click) = "removeService(assignedService)"
+        aria-label="Button that displays a tooltip in various positions">
+        <i class="material-icons">content_cut</i>
+</button>&nbsp;&nbsp;
+
+                  <mat-form-field class="example-user-input" appearance="fill">
+                    <mat-label>List of Services</mat-label>
+                    <mat-select [(ngModel)] = "service" name="serv">
+                      <mat-option *ngFor="let row of result" [value]="row.s_name">
+                        {{row.s_name}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  
+                  <!-- <button type="button" class="btn btn-default btn-circle-lg waves-effect waves-circle waves-float">
+                    <i class="material-icons">call_missed_outgoing</i>
+                </button> -->
+                  <button mat-raised-button type="button" class="btn bg-cyan btn-circle waves-effect waves-circle waves-float"
+        matTooltip="Choose any one service from list of services then click to add service"
+        (click) = "addService(service)"
+        aria-label="Button that displays a tooltip in various positions">
+        <i class="material-icons">add</i>
+  
+</button>
+                  </div>
+                  </div>
+<p style="color : red; text-align: center; font-size:medium">{{ err }}</p>  
+                <!-- <div v-if="error !== ''" class="alert alert-danger">{{ error }}</div> -->
+                <br />
+                <button type="submit" class="btn btn-success waves-effect m-r-20" [disabled] = "updateEmpForm.invalid">Edit</button>
+                <button type="button" class="btn bg-red waves-effect" (click)="goBack()">Cancel</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>

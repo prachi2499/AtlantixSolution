@@ -1,0 +1,276 @@
+<app-header></app-header>
+<html>
+  <head></head>
+  <body>
+    <div id="myslider">
+      <figure>
+        <img src="../../../assets/images/s2.jpg" alt />
+        <img src="../../../assets/images/v3.jpg" alt />
+        <img src="../../../assets/images/a3.jpg" alt />
+        <img src="../../../assets/images/slide4.jpg" alt />
+      </figure>
+    </div>
+
+    <br /><br />
+    <h3
+      align="center"
+      style="font-size: 40px; font-family: serif; color: black;"
+    >
+      <b>Our Top 3 selling packages</b>
+    </h3>
+    <div>
+      <div class="container">
+        <br /><br />
+
+        <div class="row text-center stat-wrap">
+          <div class="col-md-4 col-md-6" *ngFor="let item of arr">
+            <span data-scroll class="global-radius icon_wrap effect-1"
+              ><i class="flaticon-briefcase"></i
+            ></span>
+            <p class="stat_count" style="color: black;">{{ item.count }}</p>
+            <h3>{{ item.pk_name }}</h3>
+          </div>
+          <!-- end col -->
+          <br /><br />
+        </div>
+        <!-- end row -->
+      </div>
+      <!-- end container -->
+    </div>
+    <!-- end section -->
+    <br /><br />
+
+    <div>
+      <div
+        class="parallax section parallax-off"
+        data-stellar-background-ratio="0.9"
+        style="
+          background-image: url('../../../assets/uploads/parallax_04.jpg');
+          background-position: -5px -29.5533px;
+        "
+      >
+        <div class="container">
+          <div class="row text-center stat-wrap">
+            <div class="col-md-4 col-md-6" *ngFor="let item of parr">
+              <span data-scroll class="global-radius icon_wrap effect-1"
+                ><i class="flaticon-happy"></i
+              ></span>
+              <p class="stat_count" style="color: white;">{{ item.cnt }}</p>
+              <h3>Happy Clients</h3>
+            </div>
+            <!-- end col -->
+
+            <div class="col-md-4 col-md-6" *ngFor="let item of sarr">
+              <span data-scroll class="global-radius icon_wrap effect-1"
+                ><i class="flaticon-idea"></i
+              ></span>
+              <p class="stat_count" style="color: white;">{{ item.scount }}</p>
+              <h3>Total Services</h3>
+            </div>
+            <!-- end col -->
+
+            <div class="col-md-4 col-md-6" *ngFor="let item of packarr">
+              <span data-scroll class="global-radius icon_wrap effect-1"
+                ><i class="flaticon-briefcase"></i
+              ></span>
+              <p class="stat_count" style="color:white;">{{ item.pcount }}</p>
+              <h3>Total Packages</h3>
+            </div>
+            <!-- end col -->
+          </div>
+        </div>
+        <!-- end container -->
+      </div>
+      <!-- end container -->
+    </div>
+    <!-- end section -->
+
+    
+    <br /><br />
+      <h3
+      align="center"
+      style="font-size: 40px; font-family: serif; color: black;"
+    >
+      <b>How It Works</b>
+    </h3>
+
+    <div id="about" class="section wb">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="message-box">
+              <h4 style="font-size: 15px;">How it works</h4>
+              <h2>Step : 1</h2>
+              <p class="lead" style="font-size: 20px;">
+                Tell us what you need !
+              </p>
+
+              <p style="font-size: 20px;">
+                Here we have multiple services and multiple packages in our
+                website.So the first thing you have to do is to select whether
+                you want a particular service or a package full of different
+                services.
+              </p>
+            </div>
+            <!-- end messagebox -->
+          </div>
+          <!-- end col -->
+
+          <div class="col-md-6">
+            <div class="post-media wow fadeIn">
+              <img
+                src="../../../assets/images/step1.jpg"
+                alt=""
+                class="img-responsive img-rounded"
+              />
+            </div>
+            <!-- end media -->
+          </div>
+          <!-- end col -->
+        </div>
+        <!-- end row -->
+
+        <hr class="hr1" />
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="post-media wow fadeIn">
+              <img
+                src="../../../assets/images/step 2.png"
+                alt=""
+                class="img-responsive img-rounded"
+              />
+            </div>
+            <!-- end media -->
+          </div>
+          <!-- end col -->
+
+          <div class="col-md-6">
+            <div class="message-box">
+              <h4 style="font-size: 15px;">How it works</h4>
+              <h2>Step 2 :</h2>
+              <p class="lead" style="font-size: 20px;">Want a package ?</p>
+
+              <p style="font-size: 20px;">
+                We have multiple packages with different services in it so if
+                you want a package then first you have to go to the package then
+                select a plan that you want and after that go ahead for the
+                payment.
+              </p>
+            </div>
+            <!-- end messagebox -->
+          </div>
+          <!-- end col -->
+        </div>
+        <!-- end row -->
+        <hr class="hr1" />
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="message-box">
+              <h4 style="font-size: 15px;">How it works</h4>
+              <h2>Step 3 :</h2>
+              <p class="lead" style="font-size: 20px;">
+                Want a seperate service ?
+              </p>
+
+              <p style="font-size: 20px;">
+                We have many different services like Plumbing , Sanitizing , Ac
+                Reparing ,Home cleaning service and many more, So if you want a
+                particular service then simply call us on given number.
+              </p>
+            </div>
+            <!-- end messagebox -->
+          </div>
+          <!-- end col -->
+
+          <div class="col-md-6">
+            <div class="post-media wow fadeIn">
+              <img
+                src="../../../assets/images/service.jpg"
+                alt=""
+                class="img-responsive img-rounded"
+              />
+            </div>
+            <!-- end media -->
+          </div>
+          <!-- end col -->
+        </div>
+        <!-- end row -->
+        <hr class="hr1" />
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="post-media wow fadeIn">
+              <img
+                src="../../../assets/images/step4.jpg"
+                alt=""
+                class="img-responsive img-rounded"
+              />
+            </div>
+            <!-- end media -->
+          </div>
+          <!-- end col -->
+
+          <div class="col-md-6">
+            <div class="message-box">
+              <h4 style="font-size: 15px;">How it works</h4>
+              <h2>Step 4 :</h2>
+              <p class="lead" style="font-size: 20px;">
+                Want to use service from package ?
+              </p>
+
+              <p style="font-size: 20px;">
+                Once you have purchased a package and now if you want to use the
+                services from the package you have purchased then you have to
+                simply call on the number given . So by this you can use the
+                services from the package .
+              </p>
+            </div>
+            <!-- end messagebox -->
+          </div>
+          <!-- end col -->
+        </div>
+        <!-- end row -->
+        <hr class="hr1" />
+        <div class="row">
+          <div class="col-md-6">
+            <div class="message-box">
+              <h4 style="font-size: 15px;">How it works</h4>
+              <h2>Step 5 :</h2>
+              <p class="lead" style="font-size: 20px;">
+                Employee Support
+              </p>
+
+              <p style="font-size: 20px;">
+                Once you have purchased a package and make a call for service an
+                employee will assign for your service and the details regarding
+                to that employee will sent to you through message and our
+                employee will visit your place and provide you a service.
+              </p>
+            </div>
+            <!-- end messagebox -->
+          </div>
+          <!-- end col -->
+
+          <div class="col-md-6">
+            <div class="post-media wow fadeIn">
+              <img
+                src="../../../assets/images/step5.jpg"
+                alt=""
+                class="img-responsive img-rounded"
+              />
+            </div>
+            <!-- end media -->
+          </div>
+          <!-- end col -->
+        </div>
+        <!-- end row -->
+      </div>
+      <!-- end container -->
+    </div>
+    <!-- end section -->
+
+    <app-footer></app-footer>
+  </body>
+</html>

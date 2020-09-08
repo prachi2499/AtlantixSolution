@@ -1,0 +1,83 @@
+<app-header></app-header>
+<div class="banner-area banner-bg-1">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-12">
+              <div class="banner">
+                  <h2>Billing</h2>
+                  <ul class="page-title-link">
+
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+<div id="contact" class="section wb">
+  <div class="container">
+
+<div style="margin-top: -50px;" >
+  <div class="row">
+  <table  class="responsive-table">
+
+      <thead>
+        <tr>
+          <th scope="col">Package Name</th>
+                <th scope="col" >Services Included In the Package</th>
+                <th scope="col">Package Validity</th>
+                <th scope="col">Price</th>
+
+                <th scope="col">Discount</th>
+                <th scope="col">Total</th>
+
+
+
+        </tr>
+      </thead>
+      <tfoot>
+        <tr>
+          <td colspan="2"></td>
+        </tr>
+      </tfoot>
+      <tbody>
+        <tr >
+          <td>
+
+            {{pk_name}}
+
+          </td>
+          <td class="item-stock">
+              <ul style="list-style-type:square">
+                  <li *ngFor="let item of arr">{{item.s_name}}</li>
+                </ul> </td>
+
+            <td>    {{pk_duration}} Month</td>
+          <td class="item-qty">{{pk_price}}</td>
+          <td class="item-price">{{pk_discount}}%</td>
+          <td class="item-price">{{total }}</td>
+
+
+        </tr>
+        <tr>
+          <td colspan="5" style="text-align:right">Total Discount:</td>
+          <td>₹ {{totdiscount}}</td>
+        </tr>
+        <tr>
+          <td colspan="6" style="text-align:right">
+            <strong>TOTAL (₹ {{ pk_price }} - ₹ {{ totdiscount }}) = {{ total }}</strong>
+          </td>
+
+        </tr>
+      </tbody>
+    </table>
+    <!-- this code will be shifted to payment gateway page  -->
+    <div style="float:right">
+    <a (click)="onclickplaceorder(total,pk_name)" class="button btn btn-light btn-radius btn-brd" >Place Order</a>
+  </div>
+</div>
+</div>
+</div>
+</div>
+
+<app-footer></app-footer>

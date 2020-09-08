@@ -1,0 +1,124 @@
+<app-header></app-header>
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <h3>Your Details</h3>
+        </div>
+
+        <!-- Vertical Layout -->
+        
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>
+                            PROFILE
+                        </h2>
+                    </div>
+                    <div class="body">
+                        <form class="form-horizontal" #updateForm="ngForm" (ngSubmit)="editDetails(updateForm.value)">
+                            <div class="row clearfix">
+                                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                                    <label for="email_address_2">Mobile Number</label>
+                                </div>
+                                <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" id="email_address_2" class="form-control" placeholder="Enter your mobile number" ngModel 
+                                            #mobile="ngModel"
+                                            pattern="[0-9]*"
+                                            maxlength="10"
+                                            minlength="10" 
+                                            required
+                                            name="mobile"
+                                            [(ngModel)] = "adminMobile"
+                                            disabled>
+                                        </div>
+                                    </div>
+                                    
+                                <span *ngIf="mobile.invalid && mobile.touched && mobile.value" style="color:red; font-size:2; text-align:center;"> Entered Mobile Number Is Invalid</span>
+                                <span *ngIf="!mobile.value && mobile.touched" style="color:red; font-size:2; text-align:center;">Mobile Number Field Must be Filled</span>
+                                </div>
+                            </div>
+                            <div class="row clearfix">
+                                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                                    <label for="password_2">Password</label>
+                                </div>
+                                <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" id="password_2" class="form-control" placeholder="Enter your password" ngModel 
+                                            required #password="ngModel" name="password" [(ngModel)] = "adminPassword" minlength="10">
+                                        </div>
+                                    </div>
+                                    <span *ngIf="password.invalid && password.touched && password.value" style="color:red; font-size:2; text-align:center;"> Entered Password Is Invalid</span>
+                            <span *ngIf="!password.value && password.touched" style="color:red;  font-size:2; text-align:center;">Password Field Must be Filled</span>
+                            
+                                </div>
+                                
+                            </div>
+                            <div class="row clearfix">
+                                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                                    <label for="name_2">Name</label>
+                                </div>
+                                <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" id="name_2" class="form-control" placeholder="Enter your name" ngModel 
+                                            required #name="ngModel" name="adminname" [(ngModel)] = "adminName" pattern="^[A-Za-z -]+$">
+                                        </div>
+                                    </div>
+                                    <span *ngIf="name.invalid && name.touched && name.value" style="color:red; font-size:2; text-align:center;"> Entered Name Is Invalid</span>
+                                <span *ngIf="!name.value && name.touched" style="color:red;  font-size:2; text-align:center;">Name Field Must be Filled</span>
+                            
+                                </div>
+                                
+                            </div>
+                            <div class="row clearfix">
+                                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                                    <label for="address_2">Address</label>
+                                </div>
+                                <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" id="address_2" class="form-control" placeholder="Enter your address" ngModel 
+                                            required #address="ngModel" name="address" [(ngModel)] = "adminAddress">
+                                        </div>
+                                    </div>
+                                    <span *ngIf="address.invalid && address.touched && address.value" style="color:red; font-size:2; text-align:center;"> Entered Address Is Invalid</span>
+                                <span *ngIf="!address.value && address.touched" style="color:red;  font-size:2; text-align:center;">Address Field Must be Filled</span>
+                            
+                                </div>
+                                
+                            </div>
+                            
+                            <div class="row clearfix">
+                                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
+                                    <label for="pincode_2">Pincode</label>
+                                </div>
+                                <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" id="pincode_2" class="form-control" placeholder="Enter your pincode" ngModel 
+                                            required #pincode="ngModel" name="pincode" maxlength="6" [(ngModel)] = "adminPincode" pattern="[0-9]*">
+                                        </div>
+                                    </div>
+                                    <span *ngIf="pincode.invalid && pincode.touched && pincode.value" style="color:red; font-size:2; text-align:center;"> Entered Pincode Is Invalid</span>
+                                    <span *ngIf="!pincode.value && pincode.touched" style="color:red;  font-size:2; text-align:center;">Pincode Field Must be Filled</span>
+                                    
+                            <p style="color : red; text-align: center; font-size:medium">{{ err }}</p>  
+                                </div>
+                            
+                            </div>
+                            <div class="row clearfix">
+                                <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-4 col-xs-offset-5">
+                                    <button type="submit" class="btn btn-primary m-t-15 waves-effect" [disabled]="updateForm.invalid">UPDATE</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

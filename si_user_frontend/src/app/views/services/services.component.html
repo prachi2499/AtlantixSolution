@@ -1,0 +1,55 @@
+<app-header></app-header>
+<div class="banner-area banner-bg-1">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12" style="margin-top: 40px;">
+        <div class="banner">
+          <h2 style="margin-top: -80px;">Our Services</h2>
+          <ul class="page-title-link">
+            <!-- <li><a href="#">Home</a></li>
+                        <li><a href="#">Our Services</a></li> -->
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br><br>
+<div *ngIf="flag == true">
+  <h3 align="center" style="font-family: serif;font-size: 25px;color: #f4770d"><b>FOR ANY SERVICES CALL US ON : +91 9429042300</b></h3>
+</div>
+
+
+<div id="about" class="section wb">
+  <div class="container">
+    <div class="row text-center">
+      <div *ngFor="let item of servicearr" class="col-md-3 col-sm-6">
+        <div class="about-item">
+          <div class="about-icon">
+            <!-- <span class="icon icon-display"></span> -->
+            <img
+              height="50px"
+              width="50px"
+              class="icon icon-display"
+              src="../../../assets/images/service_icon.png"
+            />
+          </div>
+          <div class="about-text">
+            <h4>
+              <b>{{ item.s_name }} </b>
+            </h4>
+            <!-- <button style="border:2px solid black; " mat-raised-button>Detail</button> -->
+            <a [href]="'/services/servicedetail/' + item.s_id"
+              ><button type="submit" class="button button3">Detail</button></a
+            >
+            <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur ea, quis magnam deserunt. </p> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end container -->
+</div>
+<!-- end section -->
+
+<app-footer></app-footer>

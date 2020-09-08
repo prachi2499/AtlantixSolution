@@ -1,0 +1,77 @@
+<app-header></app-header>
+<div id="services">
+  <div class="container">
+    <div class="section-title text-center">
+      <br>
+      <h3 style="font-family: serif;">Services</h3>
+      <p class="lead">
+        These are the list of the different services that are included in this
+        particular package.
+      </p>
+      <img
+        src="../../../../assets/images/circle.png"
+        width="30px"
+        height="30px"
+      />
+      For Free Delivery Services &nbsp;&nbsp;
+      <img
+        src="../../../../assets/images/circle-outline.png"
+        width="30px"
+        height="30px"
+      />
+      For Essential Delivery Services &nbsp;&nbsp;
+      <img
+        src="../../../../assets/images/moon.png"
+        width="30px"
+        height="30px"
+      />
+      For Expertise Advice Services &nbsp;&nbsp;
+    </div>
+    <!-- end title -->
+
+    <div *ngFor="let item of packageser_arr" class="col-sm-6 col-md-4">
+      <div style="height: 370px; width: 300px;" class="service-widget">
+        <div class="post-media wow fadeIn">
+          <img
+            src="http://localhost:3000/images/{{ item.i_name }}"
+            alt=""
+            class="img-responsive img-rounded"
+          />
+        </div>
+        <div class="service-dit">
+          <h3 style="color: black; font-family: serif;">{{ item.s_name }}</h3>
+
+          <div *ngIf="item.sc_name == 'Expertise Advice service'">
+            <img
+              src="../../../../assets/images/moon.png"
+              width="30px"
+              height="30px"
+            />
+          </div>
+
+          <div *ngIf="item.sc_name == 'Essential service'">
+            <img
+              src="../../../../assets/images/circle-outline.png"
+              width="30px"
+              height="30px"
+            />
+          </div>
+          <div *ngIf="item.sc_name == 'Free Delivery Service'">
+            <img
+              src="../../../../assets/images/circle.png"
+              width="30px"
+              height="30px"
+            />
+          </div>
+
+          <p>{{ item.s_description }}</p>
+        </div>
+      </div>
+      <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    </div>
+  </div>
+  <!-- end container -->
+</div>
+<!-- end section -->
+
+<app-footer></app-footer>

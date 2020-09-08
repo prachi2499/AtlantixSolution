@@ -1,0 +1,241 @@
+<div>
+  <app-header></app-header>
+
+  <section class="content">
+    <div class="container-fluid">
+      <div class="block-header">
+        <h3>Add Package</h3>
+      </div>
+      <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div class="card">
+            <div class="header">
+              <h2>
+                Add Package Details
+              </h2>
+            </div>
+            <div class="body">
+              <form #addPkgForm="ngForm" (ngSubmit)="addPkg()">
+                <h2 class="card-inside-title">Basic Details</h2>
+                <div class="row clearfix">
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                      <div class="form-line">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Package Name"
+                          required
+                          pattern="[a-zA-Z0-9., ]*"
+                          maxlength="50"
+                          title="Only characters and digits are allowed"
+                          [(ngModel)]="pkgName"
+                          #pkgName1="ngModel"
+                          name="name"
+                        />
+                        <span
+                          *ngIf="
+                            pkgName1.hasError('required') && pkgName1.touched
+                          "
+                          style="color: red;"
+                          >Package Name is required</span
+                        >
+                        <span
+                          *ngIf="
+                            pkgName1.hasError('pattern') && pkgName1.touched
+                          "
+                          style="color: red;"
+                          >Only characters and digits are allowed</span
+                        >
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="form-line">
+                        <textarea
+                          class="form-control"
+                          placeholder="Description"
+                          required
+                          pattern="[a-zA-Z0-9., ]*"
+                          maxlength="400"
+                          title="Only characters,digits,comma and fullstop are allowed"
+                          rows="5"
+                          [(ngModel)]="pkgDescription"
+                          #pkgDescription1="ngModel"
+                          name="Description"
+                        ></textarea>
+                        <span
+                          *ngIf="
+                            pkgDescription1.hasError('required') &&
+                            pkgDescription1.touched
+                          "
+                          style="color: red;"
+                          >Package Description is required</span
+                        >
+                        <span
+                          *ngIf="
+                            pkgDescription1.hasError('pattern') &&
+                            pkgDescription1.touched
+                          "
+                          style="color: red;"
+                          >Only characters and digits are allowed</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <h2 class="card-inside-title">Amount Details</h2>
+                <div class="row clearfix">
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <div class="form-line">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Amount"
+                          title="Only digits are allowed"
+                          [(ngModel)]="pkgAmount"
+                          #pkgAmount1="ngModel"
+                          required
+                          pattern="[0-9]*"
+                          maxlength="10"
+                          name="Amount"
+                        />
+                        <span
+                          *ngIf="
+                            pkgAmount1.hasError('required') &&
+                            pkgAmount1.touched
+                          "
+                          style="color: red;"
+                          >Package Amount is required</span
+                        >
+
+                        <span
+                          *ngIf="
+                            pkgAmount1.hasError('pattern') && pkgAmount1.touched
+                          "
+                          style="color: red;"
+                          >Only Digits are allowed</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <div class="form-line">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Discount"
+                          title="Only digits are allowed"
+                          [(ngModel)]="pkgDiscount"
+                          #pkgDiscount1="ngModel"
+                          required
+                          pattern="[0-9]*"
+                          maxlength="10"
+                          name="Discount"
+                        />
+                        <span
+                          *ngIf="
+                            pkgDiscount1.hasError('required') &&
+                            pkgDiscount1.touched
+                          "
+                          style="color: red;"
+                          >Package Discount is required</span
+                        >
+                        <span
+                          *ngIf="
+                            pkgDiscount1.hasError('pattern') &&
+                            pkgDiscount1.touched
+                          "
+                          style="color: red;"
+                          >Only Digits are allowed</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <div class="form-line">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Duration"
+                          title="Only digits are allowed"
+                          [(ngModel)]="pkgDuration"
+                          #pkgDuration1="ngModel"
+                          required
+                          pattern="[0-9]*"
+                          maxlength="10"
+                          name="Duration"
+                        />
+                        <span
+                          *ngIf="
+                            pkgDuration1.hasError('required') &&
+                            pkgDuration1.touched
+                          "
+                          style="color: red;"
+                          >Package Duration is required</span
+                        >
+                        <span
+                          *ngIf="
+                            pkgDuration1.hasError('pattern') &&
+                            pkgDuration1.touched
+                          "
+                          style="color: red;"
+                          >Only Digits are allowed</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <div class="form-line">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Essential Service Support"
+                          title="Only digits are allowed"
+                          [(ngModel)]="essentialServices"
+                          #essentialServices1="ngModel"
+                          pattern="[0-9]*"
+                          maxlength="10"
+                          required
+                          name="essentialServices"
+                        />
+                        <span
+                          *ngIf="
+                            essentialServices1.hasError('required') &&
+                            essentialServices1.touched
+                          "
+                          style="color: red;"
+                          >Required</span
+                        >
+                        <span
+                          *ngIf="
+                            essentialServices1.hasError('pattern') &&
+                            essentialServices1.touched
+                          "
+                          style="color: red;"
+                          >Only Digits are allowed</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <button
+                  [disabled]="addPkgForm.invalid"
+                  type="submit"
+                  class="btn btn-success btn-lg waves-effect"
+                >
+                  Add
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

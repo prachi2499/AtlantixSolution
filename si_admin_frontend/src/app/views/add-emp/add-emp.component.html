@@ -1,0 +1,140 @@
+<app-header></app-header>
+<section class="content">
+    <div class="container-fluid">
+      <div class="card">
+        <div class="header">
+          <h3>Add Employee Details</h3>
+        </div>
+        <div class="body">
+          <form #addEmpForm="ngForm" (ngSubmit)="addDetails(addEmpForm.value)">
+            <div class="row clearfix">
+              <div class="col-sm-12">
+                <div class="form-group">
+                      
+                  <div class="form-line">
+                    Name :
+                    <input
+                      pattern="[a-zA-Z ]*"
+                      title="Only Characters are allowed"
+                      required
+                      type="text"
+                      class="form-control"
+                      placeholder="Enter Name"
+                      [(ngModel)] = "empName"
+                      name="empname"
+                      ngmodel
+                      #empname="ngModel"
+                    />
+                  </div>
+                                <span *ngIf="empname.invalid && empname.touched && empname.value" style="color:red; font-size:2; text-align:center;"> Entered Name Is Invalid</span>
+                                <span *ngIf="!empname.value && empname.touched" style="color:red; font-size:2; text-align:center;">Name Field Must be Filled</span>
+                </div>
+                <div class="form-group">
+                    <div class="form-line">
+                      ContactNo :
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter Contact No."
+                        maxlength="10"
+                        minlength="10"
+                        pattern="[0-9]*"
+                        title="Only Numbers are allowed"
+                        required
+                        [(ngModel)] = "empContactNo"
+                        name="empcontactno"
+                      ngmodel
+                      #empcontactno="ngModel"
+                     
+                      />
+                    </div>
+                  </div>
+                  <span *ngIf="empcontactno.invalid && empcontactno.touched && empcontactno.value" style="color:red; font-size:2; text-align:center;"> Entered Mobile Number Is Invalid</span>
+                  <span *ngIf="!empcontactno.value && empcontactno.touched" style="color:red; font-size:2; text-align:center;">Mobile Number Field Must be Filled</span>
+                  <div class="form-group">
+                    <div class="form-line">
+                      Aadhaar-Card No. :
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter Aadhaar-Card No."
+                        pattern="[0-9]*"
+                        title="Only Numbers are allowed"
+                        required
+                        [(ngModel)] = "empAadhaarNo"
+                        name="empaadhaarno"
+                      ngmodel
+                      #empaadhaarno="ngModel"
+                      />
+                    </div>
+                  </div>
+                  <span *ngIf="empaadhaarno.invalid && empaadhaarno.touched && empaadhaarno.value" style="color:red; font-size:2; text-align:center;"> Entered Aadhar Card Number Is Invalid</span>
+                  <span *ngIf="!empaadhaarno.value && empaadhaarno.touched" style="color:red; font-size:2; text-align:center;">Aadhar Card Number Field Must be Filled</span>
+                  
+                <div class="form-group">
+                  <div class="form-line">
+                    Address :
+                    <input
+                      type="text"
+                      title="Only Characters are allowed"
+                      required
+                      class="form-control"
+                      placeholder="Enter Address"
+                      [(ngModel)] = "empAddress"
+                      name="empaddress"
+                      ngModel
+                      #empaddress="ngModel"
+                    />
+                  </div>
+                                <span *ngIf="!empaddress.value && empaddress.touched" style="color:red; font-size:2; text-align:center;">Address Field Must be Filled</span>
+                </div>
+
+                <div class="form-group">
+                    <div class="form-line">
+                      Pincode :
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter Pincode"
+                        pattern="[0-9]*"
+                        maxlength="6"
+                        title="Only Numbers are allowed"
+                        required
+                        [(ngModel)] = "empPincode"
+                        name="emppincode"
+                      ngmodel
+                      #emppincode="ngModel"
+                      />
+                    </div>
+                                <span *ngIf="emppincode.invalid && emppincode.touched && emppincode.value" style="color:red; font-size:2; text-align:center;"> Entered Pincode Is Invalid</span>
+                                <span *ngIf="!emppincode.value && emppincode.touched" style="color:red; font-size:2; text-align:center;">Pincode Field Must be Filled</span>
+                  </div>
+                  <!-- <div class="form-group">
+                    <div class="form-line">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Services</mat-label>
+                    <mat-select disableRipple>
+                      <mat-option  *ngFor= "let row of services" [value]="row" [disabled] = "true" style="color:black;">{{ row }}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  </div>
+                  </div> -->
+                  <div class="form-group">
+                    <div class="form-line">
+                      <h4>Choose Image</h4><br><input class="form-control" placeholder="Enter Image" type="file" (change)="onChange($event)">
+                   </div>
+                   </div>
+                  
+                    <p style="color : red; text-align: center; font-size:medium">{{ err }}</p>  
+                <!-- <div v-if="error !== ''" class="alert alert-danger">{{ error }}</div> -->
+                <br />
+                <button type="submit" class="btn btn-success waves-effect m-r-20" [disabled] = "addEmpForm.invalid">Add</button>
+                <button type="submit" class="btn btn-danger waves-effect m-r-20" (click)="goBack()">Cancel</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+

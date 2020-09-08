@@ -1,0 +1,151 @@
+<div>
+  <app-header></app-header>
+  <section class="content">
+    <div class="container-fluid">
+      <div class="block-header">
+        <h3>Dashboard</h3>
+        <span *ngIf="error !== ''" style="color: red;">{{ error }}</span>
+      </div>
+
+      <div class="row clearfix">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box bg-orange hover-expand-effect">
+            <div class="icon">
+              <i class="material-icons">person_add</i>
+            </div>
+            <div class="content">
+              <div class="text">Total Users</div>
+              <div
+                class="number count-to"
+                data-from="0"
+                data-to="1225"
+                data-speed="1000"
+                data-fresh-interval="20"
+              >
+                {{ totalUsers }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box bg-pink hover-expand-effect">
+            <div class="icon">
+              <i class="material-icons">playlist_add_check</i>
+            </div>
+            <div class="content">
+              <div class="text">Total Services</div>
+
+              <div
+                class="number count-to"
+                data-from="0"
+                data-to="125"
+                data-speed="15"
+                data-fresh-interval="20"
+              >
+                {{ totalServices }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box bg-light-green hover-expand-effect">
+            <div class="icon">
+              <i class="material-icons">face</i>
+            </div>
+            <div class="content">
+              <div class="text">Total Employees</div>
+              <div
+                class="number count-to"
+                data-from="0"
+                data-to="243"
+                data-speed="1000"
+                data-fresh-interval="20"
+              >
+                {{ totalEmployees }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box bg-cyan hover-expand-effect">
+            <div class="icon"><i class="material-icons">shopping_cart</i></div>
+            <div class="content">
+              <div class="text">Total Packages Sold</div>
+
+              <div
+                class="number count-to"
+                data-from="0"
+                data-to="257"
+                data-speed="1000"
+                data-fresh-interval="20"
+              >
+                {{ totalPkgSold }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="block-header">
+        <h2>Current Tasks</h2>
+      </div>
+      <div class="row clearfix">
+        <!-- Task Info -->
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <div class="card">
+            <div class="header">
+              <h2>Pending Services</h2>
+            </div>
+            <div class="body">
+              <div class="table-responsive">
+                <table class="table table-hover dashboard-task-infos">
+                  
+                  <thead>
+                    <tr>
+                      <th>User Name</th>
+                      <th>User's Contact No.</th>
+                      <th>Employee Name</th>
+                      <th>Employee's Contact No.</th>
+                      <th>Package Name</th>
+                      <th>Service Name</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody> 
+                     
+                    <tr *ngFor="let item of pendingServicesList">
+
+                      <td>{{ item.p_name }}</td>
+                      <td>{{ item.p_mobile }}</td>
+                      <td>{{ item.e_name }}</td>
+                      <td>{{ item.e_mobile }}</td>
+                      <td>{{ item.pk_name }}</td>
+                      <td>{{ item.s_name }}</td>
+                      <td> 
+                        <button
+                        type="button"
+                        (click)="completeService(item.om_id,item.p_mobile,item.s_name,item.e_name,item.p_name,item.e_mobile)"
+                        class="btn btn-success waves-effect"
+                      >
+                        Completed</button
+                      >&nbsp;&nbsp; <button
+                      type="button"
+                      (click)="failService(item.om_id,item.p_mobile,item.s_name,item.e_name,item.p_name,item.e_mobile)"
+                      class="btn btn-danger waves-effect"
+                    >
+                      Failed</button
+                    ></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <br>
+                <h1><p style="color : red; text-align: center; font-size:30px">{{ err }}</p></h1>
+                <br>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- #END# Task Info -->
+      </div>
+    </div>
+  </section>
+</div>

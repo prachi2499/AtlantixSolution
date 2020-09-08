@@ -1,0 +1,285 @@
+<app-header></app-header>
+<section class="content">
+  <div class="container-fluid">
+    <div class="block-header">
+      <h2>
+        LIST OF SERVICES &nbsp;&nbsp;<button
+          type="button"
+          class="btn bg-indigo waves-effect"
+          data-toggle="modal"
+          data-target="#addModal"
+        >
+          Add New Service
+        </button>
+      </h2>
+    </div>
+    <br /><br />
+    <!-- Basic Example -->
+    <div class="row clearfix">
+      <div
+        class="col-lg-4 col-md-4 col-sm-6 col-xs-20"
+        *ngFor="let row of services"
+      >
+        <div class="card">
+          <div class="header bg-cyan">
+            <h2 style="font-size: 15px;">
+              {{ row.s_name }}
+            </h2>
+            <ul class="header-dropdown m-r--5">
+              
+            </ul>
+          </div>
+          <div class="body">
+            {{ row.s_description }}
+          </div>
+          <button
+                type="button"
+                data-toggle="modal"
+                (click)="getServiceDetails(row.s_id)"
+                data-target="#defaultModal"
+                class="btn btn-success btn-circle waves-effect waves-circle waves-float" style="float: right;"
+              >
+                <i class="material-icons">create</i></button
+              >&nbsp;
+              <button
+                type="button"
+                class="btn btn-danger btn-circle waves-effect waves-circle waves-float"
+                (click)="getServiceDetails2(row.s_id)"
+                data-toggle="modal"
+                data-target="#deleteModal"
+              >
+                <i class="material-icons">delete_sweep</i>
+              </button>
+              
+              <button type="submit" style="margin-left: 23%;"
+              (click) = "goTo(row.s_id)"
+              class="btn btn-warning waves-effect"
+            >
+              View Images
+          </button>&nbsp;
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="defaultModalLabel">Service Details</h4>
+          </div>
+          <div class="modal-body">
+            <form
+              #updateServiceForm="ngForm"
+              (ngSubmit)="updateService(updateServiceForm.value)"
+            >
+              <div class="row clearfix">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <div class="form-line">
+                      Service-Name :
+                      <input
+                        pattern="[a-zA-Z ]*"
+                        title="Only Characters are allowed"
+                        required
+                        type="text"
+                        class="form-control"
+                        placeholder="Service Name"
+                        [(ngModel)]="serviceName"
+                        name="servicename"
+                        ngmodel
+                        #servicename="ngModel"
+                      />
+                    </div>
+                    <span
+                      *ngIf="
+                        servicename.invalid &&
+                        servicename.touched &&
+                        servicename.value
+                      "
+                      style="color: red; font-size: 2; text-align: center;"
+                    >
+                      Entered Service Name Is Invalid</span
+                    >
+                    <span
+                      *ngIf="!servicename.value && servicename.touched"
+                      style="color: red; font-size: 2; text-align: center;"
+                      >Service Name Field Must be Filled</span
+                    >
+                  </div>
+
+                  <div class="form-group">
+                    <div class="form-line">
+                      Service-Description :
+                      <textarea
+                        class="form-control"
+                        placeholder="Description"
+                        required
+                        maxlength="400"
+                        title="Only characters,digits,comma and fullstop are allowed"
+                        rows="5"
+                        [(ngModel)]="serviceDesc"
+                        #servicedesc="ngModel"
+                        ngModel
+                        name="Description"
+                      ></textarea>
+                    </div>
+                    <span
+                      *ngIf="!servicedesc.value && servicedesc.touched"
+                      style="color: red; font-size: 2; text-align: center;"
+                      >Service Description Field Must be Filled</span
+                    >
+                  </div>
+                  <p style="color: red; text-align: center; font-size: medium;">
+                    {{ err }}
+                  </p>
+                  <!-- <div v-if="error !== ''" class="alert alert-danger">{{ error }}</div> -->
+                  <br />
+                  <button
+                    type="submit"
+                    class="btn btn-success waves-effect m-r-20"
+                    [disabled]="updateServiceForm.invalid"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    type="button"
+                    class="btn bg-red waves-effect"
+                    data-dismiss="modal"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="defaultModalLabel">
+              Confirmation Message
+            </h4>
+          </div>
+          <div class="modal-body">
+            Are you sure you want to delete this service ?
+          </div>
+          <div class="modal-footer">
+            <button
+              type="submit"
+              class="btn btn-success waves-effect"
+              (click)="deleteService()"
+            >
+              Yes
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger waves-effect"
+              data-dismiss="modal"
+            >
+              No
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="defaultModalLabel">Service Details</h4>
+          </div>
+          <div class="modal-body">
+            <form
+              #addServiceForm="ngForm"
+              (ngSubmit)="addService(addServiceForm.value)"
+            >
+              <div class="row clearfix">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <div class="form-line">
+                      Service-Name :
+                      <input
+                        pattern="[a-zA-Z ]*"
+                        title="Only Characters are allowed"
+                        required
+                        type="text"
+                        class="form-control"
+                        placeholder="Service Name"
+                        [(ngModel)]="addserviceName"
+                        name="addservicename"
+                        ngmodel
+                        #addservicename="ngModel"
+                      />
+                    </div>
+                    <span
+                      *ngIf="
+                        addservicename.invalid &&
+                        addservicename.touched &&
+                        servicename.value
+                      "
+                      style="color: red; font-size: 2; text-align: center;"
+                    >
+                      Entered Service Name Is Invalid</span
+                    >
+                    <span
+                      *ngIf="!addservicename.value && addservicename.touched"
+                      style="color: red; font-size: 2; text-align: center;"
+                      >Service Name Field Must be Filled</span
+                    >
+                  </div>
+
+                  <div class="form-group">
+                    <div class="form-line">
+                      Service-Description :
+                      <textarea
+                        class="form-control"
+                        placeholder="Description"
+                        required
+                        maxlength="400"
+                        title="Only characters,digits,comma and fullstop are allowed"
+                        rows="5"
+                        [(ngModel)]="addserviceDesc"
+                        #addservicedesc="ngModel"
+                        ngModel
+                        name="Description"
+                      ></textarea>
+                    </div>
+                    <span
+                      *ngIf="!addservicedesc.value && addservicedesc.touched"
+                      style="color: red; font-size: 2; text-align: center;"
+                      >Service Description Field Must be Filled</span
+                    >
+                  </div>
+                  <p style="color: red; text-align: center; font-size: medium;">
+                    {{ err }}
+                  </p>
+                  <!-- <div v-if="error !== ''" class="alert alert-danger">{{ error }}</div> -->
+                  <br />
+                  <button
+                    type="submit"
+                    class="btn btn-success waves-effect m-r-20"
+                    [disabled]="addServiceForm.invalid"
+                  >
+                    Add
+                  </button>
+                  <button
+                    type="button"
+                    class="btn bg-red waves-effect"
+                    data-dismiss="modal"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- #END# Colored Card - With Loading -->
+  </div>
+</section>

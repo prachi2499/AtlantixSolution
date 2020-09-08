@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Login Template</title>
+  <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+
+</head>
+<body>
+  <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
+    <div class="container">
+      <div class="card login-card">
+        <div class="row no-gutters">
+          <div class="col-md-5">
+            <img src="../../../assets/images/construction-3042638_1920.jpg" alt="login" class="login-card-img">
+          </div>
+          <div class="col-md-7">
+            <div class="card-body">
+              <div class="brand-wrapper">
+                <!-- <img src="../../../assets/images/logo.svg" alt="logo" class="logo"> -->
+                <h1 style="color:#f4770d;font-family: serif"><b>ATLANTIX SOLUTIONS</b></h1>
+              </div>
+              <p class="login-card-description">Create your new account</p>
+              <form #f="ngForm" action="#!">
+                  <div class="form-group">
+                    <label for="phone" class="sr-only">Registered phone no</label>
+                    <input (keyup)="onKey($event)"  pattern="^[0-9]*$" maxlength="10" minlength="10" required  #mob="ngModel" [(ngModel)]="p_mobile" type="text" name="phone" id="phone" class="form-control" placeholder="Enter Phone Number">
+                    <div *ngIf="mob.invalid || mob.touched" >
+                      <div *ngIf="mob.errors?.minlength"  class="text-danger">
+                        <font size=2>*Mobile number should be of 10 digits</font>
+                          </div>
+                          <div *ngIf="mob.errors?.pattern"  class="text-danger">
+                            <font size=2>*It should be numbers only</font>
+                              </div>
+
+                         </div>
+                          <div [hidden]="mob.valid || mob.untouched">
+                          <div [hidden]="!mob.errors?.required"  class="text-danger">
+                                <font size=2>*Mobile number is must</font>
+                              </div>
+                             </div>
+                             <div *ngIf="registerflag" class="text-danger">
+                              <font size=2>*Mobile number is already Registered</font>
+                            </div>
+                          
+                  </div>
+
+                  <div *ngIf="showflag" class="form-group">
+                    <label for="name" class="sr-only">Enter OTP</label>
+                    <input required  #OTP="ngModel" [(ngModel)]="otp" type="text" name="otp" id="otp" class="form-control" placeholder="Enter OTP">
+                    <!-- <div *ngIf="otp.invalid || otp.touched" >
+                          <div *ngIf="otp.errors?.pattern"  class="text-danger">
+                            <font size=2>*Name must contain alphabets only</font>
+                              </div>
+
+                         </div> -->
+                          <div [hidden]="OTP.valid || OTP.untouched">
+                          <div [hidden]="!OTP.errors?.required"  class="text-danger">
+                                <font size=2>*OTP is must</font>
+                              </div>
+                             </div>
+                             <button style="border:2px solid black; " (click)="getOTP(p_mobile)" mat-raised-button>Generate OTP</button>
+                  </div>
+                  <div class="form-group">
+                    <label for="name" class="sr-only">your name</label>
+                    <input pattern="^[A-Za-z -]+$" required  #name="ngModel" [(ngModel)]="p_name" type="text" name="name" id="name" class="form-control" placeholder="Enter Name">
+                    <div *ngIf="name.invalid || name.touched" >
+                          <div *ngIf="name.errors?.pattern"  class="text-danger">
+                            <font size=2>*Name must contain alphabets only</font>
+                              </div>
+
+                         </div>
+                          <div [hidden]="name.valid || name.untouched">
+                          <div [hidden]="!name.errors?.required"  class="text-danger">
+                                <font size=2>*Name is must</font>
+                              </div>
+                             </div>
+                  </div>
+
+
+
+
+                  <div class="form-group mb-4">
+                    <label for="password" class="sr-only">Password</label>
+                    <input minlength="8" required #pwd="ngModel" type="password" [(ngModel)]="p_password" name="password" id="password" class="form-control" placeholder="***********">
+                    <div *ngIf="pwd.invalid || pwd.touched" >
+                      <div *ngIf="pwd.errors?.minlength"  class="text-danger">
+                        <font size=2>*Password must be of atleast 8 characters long</font>
+                          </div>
+
+                         </div>
+                          <div [hidden]="pwd.valid || pwd.untouched">
+                          <div [hidden]="!pwd.errors?.required"  class="text-danger">
+                                <font size=2>*Password is must</font>
+                              </div>
+                             </div>
+                  </div>
+
+
+
+
+                  <div class="form-group mb-4">
+                    <label for="address" class="sr-only">Address</label>
+                    <input required #add="ngModel" type="text" [(ngModel)]="p_address" name="address" id="address" class="form-control" placeholder="Enter Address">
+                    
+                          <div [hidden]="add.valid || add.untouched">
+                          <div [hidden]="!add.errors?.required"  class="text-danger">
+                                <font size=2>*Address is must</font>
+                              </div>
+                             </div>
+                  </div>
+
+
+
+
+
+
+                  <div class="form-group mb-4">
+                    <label for="pincode" class="sr-only">Pincode</label>
+                    <input maxlength="6" minlength="6" pattern="^[0-9]*$" required #pin="ngModel" [(ngModel)]="p_pincode" type="text" name="pincode" id="pincode" class="form-control" placeholder="Enter Pincode">
+                    <div *ngIf="pin.invalid || pin.touched" >
+                    <div *ngIf="pin.errors?.pattern"  class="text-danger">
+                      <font size=2>*pincode should be numbers only</font>
+                        </div>
+                        <div *ngIf="pin.errors?.minlength"  class="text-danger">
+                            <font size=2>*pincode should be of  6 digits</font>
+                              </div>
+                    </div>
+                    <div [hidden]="pin.valid || pin.untouched">
+                      <div [hidden]="!pin.errors?.required"  class="text-danger">
+                            <font size=2>*pincode is must</font>
+                          </div>
+                         </div>
+                  </div>
+
+
+                  
+                  
+
+                  <input [disabled]="!f.valid" (click)="onClickSignUp()" name="login" id="login" class="btn btn-block login-btn mb-4" type="button" value="Signup">
+                </form>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>
